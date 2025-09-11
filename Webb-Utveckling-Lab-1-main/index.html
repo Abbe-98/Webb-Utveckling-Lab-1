@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SPA Demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Load JS after HTML is parsed -->
+  <script defer src="index.js"></script>
+</head>
+<body>
+  <nav>
+    <a href="#menu" data-link="view">Main Menu</a>
+    <a href="#instructions" data-link="view">Instructions</a>
+    <a href="#scores" data-link="view">High Scores</a>
+    <a href="#settings" data-link="view">Settings</a>
+  </nav>
+
+  <!-- Views -->
+  <section id="menu" class="view" aria-hidden="true">
+    <h1>Main Menu</h1>
+    <p>Start the game, pick a mode, etc.</p>
+  </section>
+
+  <section id="instructions" class="view hidden" aria-hidden="true">
+    <h1>Instructions</h1>
+    <ol>
+      <li>Use arrows/WASD to move</li>
+      <li>Press space to jump</li>
+      <li>Collect coins, avoid spikes</li>
+    </ol>
+  </section>
+
+  <section id="scores" class="view hidden" aria-hidden="true">
+    <h1>High Scores</h1>
+    <ul id="scores-list">
+      <li>Ada — 12000</li>
+      <li>Linus — 9800</li>
+    </ul>
+  </section>
+
+  <section id="settings" class="view hidden" aria-hidden="true">
+    <h1>Settings</h1>
+    <label>
+      Sound
+      <input type="checkbox" checked />
+    </label>
+  </section>
+</body>
+</html>
