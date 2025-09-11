@@ -3,45 +3,54 @@
 <head>
   <meta charset="utf-8">
   <title>MathRush</title>
-  <link rel="icon" type="image/x-icon" href="Icons/math-48.png">
+<link rel="icon" type="image/x-icon" href="Icons/math-48.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 
-<link
+ <link
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
 />
-
-
   <!-- Load JS after HTML is parsed -->
   <script defer src="index.js"></script>
+  
 </head>
-<body>
+<body onload="showPage('Main_Menu')">
 
-    <!-- Left Menu -->
+    <!-- Over Menu -->
   <nav class="menu">
     <a href="#high_scores" onclick="showPage('high_scores')"><i class="fa-solid fa-web-awesome"></i><br>High Scores</a>
     <a href="#settings" onclick="showPage('settings')"><i class="fa-solid fa-gear"></i><br>Settings</a>
   </nav>
 
-  <!-- Right Content -->
+ 
+
+
+      <!-- Content in menues-->
   <main class="content">
     <div id="Main_Menu" class="page active">
     <!--<h1>Main Menu</h1>
     <p>Start the game, pick a mode, etc.</p>    </div>-->
-    <div id="instructions" class="page">
-    <h1>Instructions</h1>
-    <ol>
-      <li>Use arrows/WASD to move</li>
-      <li>Press space to jump</li>
-      <li>Collect coins, avoid spikes</li>
-    </ol>    </div>
+  
+  </div>
+
     <div id="high_scores" class="page">
     <h1>High Scores</h1>
     <ul id="scores-list">
       <li>Ada — 12000</li>
       <li>Linus — 9800</li>
-    </ul>    </div>
+    </ul>    
+    </div>
+
+    <div id="instructions" class="page">
+    <h1>Instructions</h1>
+    <p>Welcome to MathRush!<br>
+       Solve as many math problems as you can before time runs out.<br>
+       Each correct answer gets you closer to the finish line and win!<br>
+       If you dont answear all the questions right, you Loose :(<br>) 
+       Choose your difficulty level and start racing against the clock!</p>
+    </div>
+
     <div id="settings" class="page">
     <h1>Settings</h1>
     <label>
@@ -49,10 +58,11 @@
       <input type="checkbox" checked>
     </label>    </div>
   </main>
-
+     <!-- Under Menu -->
   <footer class="footer">
     <a href="#instructions" onclick="showPage('instructions')"><i class="fa-solid fa-lightbulb"></i><br>Instructions</a>
-    <a href="#Main_Menu" onclick="showPage('Main_Menu')"><i class="fa-solid fa-house"></i><br>Main Menu</a>
+    <a href="#Main_Menu" onclick="showPage('Main_Menu')"><i class="fa-solid fa-house"></i><br>Home</a>
   </footer>
+
 </body>
 </html>

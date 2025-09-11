@@ -6,23 +6,24 @@
       height: 100%;
     }
 
-    /* Style for the left menu */
+    /* Style for Over Menu */
     .menu {
-      background-color: #333;
-      padding: 8px;
+      background-color: #1271e6;
+      padding: 5px;
       box-sizing: border-box;
       justify-content: center;
       display: flex;    /* Lodrätt*/
       flex-wrap: wrap;
       gap: 100px;
       position: fixed;
-      width: 100%;
       top: 0;
+      width: 100%;
     }
 
+    /* Style for Under Menu */
     .footer {
-      background-color: #333;
-      padding: 8px;
+      background-color: #1271e6;
+      padding: 5px;
       box-sizing: border-box;
       justify-content: center;
       display: flex;
@@ -38,15 +39,17 @@
       padding: 15px;
       text-decoration: none;
       display: block;
-      background-color: #444;
+      background-color: #268ef0;
       border-radius: 5px;
       text-align: center;
       display: inline-block;
-      font-size: 20px; 
-        }
+      font-size: 15px; 
+      width: 110px;
+      height: 40px;
+      }
 
     .menu a:hover, .footer a:hover {
-      background-color: #555;
+      background-color: #76b7f5;
     }
 
     /* Style for the right content */
@@ -56,16 +59,16 @@
       width: 100%;
       height: 100%;
       position: fixed;
-      top: 90px;                /* justera till din header-höjd */
+      top: 80px;                /* justera till din header-höjd */
       bottom: 90px;       
-      background-image:url('image100.png');    
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+      background-image:url('image114.png');    
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;      
     }
 
     /* Hide all pages initially */
-    .page {
+    .page {    
       display: none;
     }
 
@@ -73,10 +76,44 @@
     .page.active {
       display: block;
       text-align: center;
-
     }
 
-    /* ol {
-      list-style-type: none; /* removes numbers/dots */
-      /* word-spacing: 1cap;
-    } */
+    #Main_Menu.active {
+      background-image:url('image114.png');    
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+    #settings.active {
+      background-color: aliceblue;
+      width: 400px;   /* exempel: gör den bredare */
+      height: 300px;  /* exempel: gör den högre */
+      font-size: 20px; /* för större text */
+      padding: 20px; /* mer utrymme inom */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #instructions.active {
+      background-color: aliceblue;
+      width: 400px;   /* exempel: gör den bredare */
+      height: 300px;  /* exempel: gör den högre */
+      font-size: 20px; /* för större text */
+      padding: 20px; /* mer utrymme inom */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    #high_scores.active {
+      background-color: aliceblue;
+      width: 400px;   /* exempel: gör den bredare */
+      height: 300px;  /* exempel: gör den högre */
+      font-size: 20px; /* för större text */
+      padding: 20px; /* mer utrymme inom */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
