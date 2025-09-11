@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -7,6 +7,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
 
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+/>
+
+
   <!-- Load JS after HTML is parsed -->
   <script defer src="index.js"></script>
 </head>
@@ -14,17 +20,15 @@
 
     <!-- Left Menu -->
   <nav class="menu">
-    <a href="#Main_Menu" onclick="showPage('Main_Menu')">Main Menu</a>
-    <a href="#instructions" onclick="showPage('instructions')">Instructions</a>
-    <a href="#high_scores" onclick="showPage('high_scores')">High Scores</a>
-    <a href="#settings" onclick="showPage('settings')">Settings</a>
+    <a href="#high_scores" onclick="showPage('high_scores')"><i class="fa-solid fa-web-awesome"></i><br>High Scores</a>
+    <a href="#settings" onclick="showPage('settings')"><i class="fa-solid fa-gear"></i><br>Settings</a>
   </nav>
 
   <!-- Right Content -->
   <main class="content">
     <div id="Main_Menu" class="page active">
-    <h1>Main Menu</h1>
-    <p>Start the game, pick a mode, etc.</p>    </div>
+    <!--<h1>Main Menu</h1>
+    <p>Start the game, pick a mode, etc.</p>    </div>-->
     <div id="instructions" class="page">
     <h1>Instructions</h1>
     <ol>
@@ -46,5 +50,9 @@
     </label>    </div>
   </main>
 
+  <footer class="footer">
+    <a href="#instructions" onclick="showPage('instructions')"><i class="fa-solid fa-lightbulb"></i><br>Instructions</a>
+    <a href="#Main_Menu" onclick="showPage('Main_Menu')"><i class="fa-solid fa-house"></i><br>Main Menu</a>
+  </footer>
 </body>
 </html>
