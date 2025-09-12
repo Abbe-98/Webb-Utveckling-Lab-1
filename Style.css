@@ -1,67 +1,86 @@
     body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      height: 100%;
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto; /* Header, content, footer */
+  height: 100vh; /* full höjd */
+  position: relative;
     }
+
+    body::before {
+  content: "";
+  position: fixed;
+  inset: 0; /* top:0; right:0; bottom:0; left:0 */
+  background-image: url('Icons/image.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: -1; /* lägg bakom alla element */
+}
 
     /* Style for the left menu */
     .menu {
-      background-color: #333;
-      padding: 8px;
-      box-sizing: border-box;
-      justify-content: center;
+      grid-row: 1 / 2; /* spans footer */
+      justify-content: space-evenly;
+      align-items: center;
       display: flex;    /* Lodrätt*/
-      flex-wrap: wrap;
-      gap: 100px;
-      position: fixed;
-      width: 100%;
-      top: 0;
-    }
-
-    .footer {
-      background-color: #333;
-      padding: 8px;
-      box-sizing: border-box;
-      justify-content: center;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 100px;
       position: fixed;
       bottom: 0;
+      /* gap: 0px; put space between items */
       width: 100%;
+      top: 0;
+      height: 130px;
     }
 
-    .menu a, .footer a {
-      color: white;
-      padding: 15px;
-      text-decoration: none;
-      display: block;
-      background-color: #444;
-      border-radius: 5px;
-      text-align: center;
-      display: inline-block;
-      font-size: 20px; 
-        }
+    .footer-tabs {
+      grid-row: 3 / 4; /* spans footer */
+      /* background-color: #333; */
+      justify-content: space-evenly;
+      align-items: center;
+      display: flex;    /* Lodrätt*/
+      position: fixed;
+      bottom: 0;
+      /* gap: 0px; put space between items c96300 #23cf3b  */
+      width: 100%;
+      height: 130px;
+    }
 
-    .menu a:hover, .footer a:hover {
-      background-color: #555;
+    .footer-tabs p, .menu p {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
+      flex-shrink: 1;
+      width: 235px;
+      font-size: 35px;
+      height: 100px;
+      color: #ffffff;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #3accfe 0%, #23cf3a77 50%, #34c8ff 100%)
+    }
+
+    .menu a, .footer-tabs a {
+  font-family: 'Cambria Math', 'STIX Two Math', 'Times New Roman', serif;
+  font-size: 32px;
+}
+
+    .menu p:hover, .footer-tabs p:hover {
+      background: #45a049;
+      cursor: pointer;
+
     }
 
     /* Style for the right content */
     .content {
-      flex-grow: 1;
-      padding: 20px;
+      grid-row: 2 / 3; /* spans content */
+      flex-shrink: 1;
       width: 100%;
-      height: 100%;
       position: fixed;
-      top: 90px;                /* justera till din header-höjd */
-      bottom: 90px;       
-      background-image:url('image100.png');    
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+        /* centrera innehållet */
+      display: grid;
+      grid-template-rows: auto auto auto auto auto; /* 4 rader */
+    place-items: center;   /* = align-items + justify-items */
+      top: 130px;    
+      bottom: 130px;            /* justera till din header-höjd */
     }
 
     /* Hide all pages initially */
@@ -76,7 +95,38 @@
 
     }
 
+        .page.active2 {
+      display: block;
+      text-align: center;
+      grid-row : 3 / 5;
+
+    }
+
+    #Main_Menu button {
+      font-size: 45px;
+      padding: 35px;
+      border: none;
+      border-radius: 24px;
+      background-color: #ffffff; /* Grön bakgrund */
+      color: #4CAF50; /* Vit text */
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+
+      animation: fadeIn 0.5s ease-in-out  infinite alternate;
+
+      &:hover {
+        background-color: #45a049; /* Mörkare grön vid hover */
+        color: #ffffff;
+        animation: none;
+      }
+    }
+
     /* ol {
       list-style-type: none; /* removes numbers/dots */
       /* word-spacing: 1cap;
     } */
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
