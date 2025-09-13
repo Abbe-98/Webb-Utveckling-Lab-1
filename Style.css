@@ -89,8 +89,8 @@ body {
       text-align: center;
       background: azure;
       border-radius: 40px;
-      width: 90%;
-      height: 90%;
+      width: 75%;
+      height: 100%;
       grid-row: 1 / 6;
       overflow: auto;
 
@@ -225,4 +225,122 @@ body {
   justify-content: center;
   align-items: center;
   color: white;
+}
+
+/* Input box */
+.game-input {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: #bbb;
+  background-color: #3fa968;
+  border: 2px solid #2c758778;
+  border-radius: 10px;
+  padding: 12px 20px;
+  width: 80%;
+  text-align: center;
+
+  /* neon glow */
+  box-shadow: 0 0 10px #00ffea, 0 0 20px #0088ff inset;
+}
+
+/* Input focus effect */
+.game-input:focus {
+  outline: none;
+  border-color: #27AE60;
+  box-shadow: 0 0 15px #27AE60, 0 0 30px #27AE60 inset;
+}
+
+/* Placeholder styling */
+.game-input::placeholder {
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Container for difficulty */
+.difficulty-options {
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  color: #000;
+    /* Neon text glow */
+  text-shadow: 0 0 5px #00ffea,
+               0 0 10px #00ccff,
+               0 0 20px #0088ff;
+  font-size: 1.1rem;
+}
+
+/* Hide the default checkbox */
+.game-checkbox input {
+  display: none;
+}
+
+/* Custom checkbox style */
+.game-checkbox {
+  position: relative;
+  cursor: pointer;
+  padding-left: 35px;
+  user-select: none;
+}
+
+/* Checkbox square */
+.game-checkbox .checkmark {
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background-color: #3fa968;
+  border: 2px solid #27AE60;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #00ffea, 0 0 20px #0088ff inset;
+}
+
+/* When checked */
+.game-checkbox input:checked + .checkmark {
+  background-color: #27AE60;
+  box-shadow: 0 0 10px #27AE60, 0 0 20px #27AE60 inset;
+}
+
+/* Add a glowing tick effect */
+.game-checkbox input:checked + .checkmark::after {
+  content: "✔";
+  color: #bbb;
+  font-size: 16px;
+  position: absolute;
+  left: 3px;
+  top: -1px;
+}
+
+/* Start Game button */
+.game-button {
+  margin-top: 90px;
+  padding: 15px 40px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: #bbb;
+  background: #232e27;
+  border: 2px solid #2c7587;
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  /* neon glow */
+  box-shadow: 0 0 15px #00ffea, 0 0 25px #0088ff inset;
+  transition: 0.2s ease-in-out;
+}
+
+/* Hover effect */
+.game-button:hover {
+  background: #00ffea;
+  color: #111;
+  box-shadow: 0 0 20px #00ffea, 0 0 40px #00ffea;
+}
+
+/* Active click effect */
+.game-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 10px #27AE60, 0 0 20px #27AE60 inset;
 }
