@@ -1,7 +1,5 @@
     body {
   margin: 0;
-  display: grid;
-  grid-template-rows: auto 1fr auto; /* Header, content, footer */
   height: 100vh; /* full höjd */
   position: relative;
     }
@@ -19,7 +17,6 @@
 
     /* Style for the left menu */
     .menu {
-      grid-row: 1 / 2; /* spans footer */
       justify-content: space-evenly;
       align-items: center;
       display: flex;    /* Lodrätt*/
@@ -32,7 +29,6 @@
     }
 
     .footer-tabs {
-      grid-row: 3 / 4; /* spans footer */
       /* background-color: #333; */
       justify-content: space-evenly;
       align-items: center;
@@ -44,11 +40,12 @@
       height: 130px;
     }
 
-    .footer-tabs p, .menu p {
+    .footer-tabs a, .menu a {
       display: flex;
       flex-direction: column;
       justify-content: space-evenly;
       align-items: center;
+      text-decoration: none;
       flex-shrink: 1;
       width: 235px;
       font-size: 35px;
@@ -58,12 +55,12 @@
       background: linear-gradient(90deg, #3accfe 0%, #23cf3a77 50%, #34c8ff 100%)
     }
 
-    .menu a, .footer-tabs a {
+    .menu span, .footer-tabs span {
   font-family: 'Cambria Math', 'STIX Two Math', 'Times New Roman', serif;
   font-size: 32px;
 }
 
-    .menu p:hover, .footer-tabs p:hover {
+    .menu a:hover, .footer-tabs a:hover {
       background: #45a049;
       cursor: pointer;
 
@@ -71,8 +68,6 @@
 
     /* Style for the right content */
     .content {
-      grid-row: 2 / 3; /* spans content */
-      flex-shrink: 1;
       width: 100%;
       position: fixed;
         /* centrera innehållet */
@@ -92,6 +87,12 @@
     .page.active {
       display: block;
       text-align: center;
+      background: azure;
+      border-radius: 40px;
+      width: 90%;
+      height: 90%;
+      grid-row: 1 / 6;
+      overflow: auto;
 
     }
 
@@ -121,12 +122,107 @@
       }
     }
 
-    /* ol {
-      list-style-type: none; /* removes numbers/dots */
-      /* word-spacing: 1cap;
-    } */
+    table#scores-list {
+      border-collapse: collapse;
+      width: 95%;
+      display: inline-table;
+      margin-bottom: 20px;
+    }
+
+    table#scores-list th, table#scores-list td {
+      border: 2px solid #45a049b0;
+      padding: 8px;
+      text-align: left;
+      font-size: 24px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      /* text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6); */
+        }
+
+      table#scores-list th {
+       text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+       background-color: #45a049b0;
+       color: #ffffff;
+        }
+
+    table#scores-list tbody tr:nth-child(even) td{
+      background-color: #9ca09c4d;
+    }
 
     @keyframes fadeIn {
       from { opacity: 0; }
       to { opacity: 1; }
     }
+
+
+    #exitBtn {
+  background: #ff2700de;
+  color: white;            /* optional for text */
+  transition: background 0.3s ease;
+}
+
+#exitBtn:hover {
+  background: #45a049;
+  color: #000;             /* text turns black when hovered */
+}
+
+
+        h1 {
+            font-size: 3rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+            animation: gradient 3s ease infinite;
+        }
+        
+        @keyframes gradient {
+            0% { color: #34c8ff; }
+            50% { color: #f8ab00; }
+            100% { color: #34c8ff; }
+        }
+
+        #instructions p {
+          font-size: 24px;
+          line-height: 1.6;
+          text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        #settings label {
+          font-size: 24px;
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+                }
+
+        .checkbox-container, .checkbox-container label {
+          display: flex;
+          justify-content: center;
+        align-items: center; 
+      cursor: pointer;    } 
+                
+                        
+.checkbox-container input[type='checkbox'] {
+    cursor: pointer;
+    opacity: 0;
+    position: absolute;
+}
+
+.checkbox-container label::after {
+    content: '';
+    width: 1em;
+    height: 1em;
+    margin-top: 2px;
+    border-radius: .15em;
+    border: .05em solid #000;
+}
+
+
+.checkbox-container label:has(input[type='checkbox']:focus)::after {
+  box-shadow: 0 0 20px black;
+}
+
+.checkbox-container label:has(input[type='checkbox']:checked)::after {
+  content: '✔';
+  background-color: #27AE60;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
