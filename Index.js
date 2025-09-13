@@ -72,6 +72,15 @@ function startGame() {
 
   document.querySelector('.fa-solid.fa-house').style.display = 'none';
   document.querySelector('.fa-solid.fa-lightbulb').style.display = 'none';
+  document.querySelector('.content').style.top = "0";
+  
+  showPage("Game_Main");
+  
+  let gameMain = document.getElementById("Game_Main");
+  if (gameMain.classList.contains("active")) {
+    gameMain.style.height = "90%"
+    gameMain.style.width = "90%";
+  }
 
   // add Exit button
   document.querySelector('.footer-tabs').innerHTML =
@@ -95,6 +104,8 @@ function exitGame(e) {
 
   // restore footer and menu
   document.querySelector('.menu').style.display = 'flex';
+  document.getElementById('Game_Main').classList.remove('active');
+  document.querySelector('.content').style.top = "";
   document.getElementById('Main_Menu').classList.add('active2');
 
   // restore original footer-tabs
