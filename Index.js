@@ -102,3 +102,4 @@ function exitGame(e) {
     '<a href="#instructions" onclick="showPage(\'instructions\')" class="fa-solid fa-lightbulb"><span>Instructions</span></a>' +
     '<a href="#Main_Menu" onclick="showPage(\'Main_Menu\')" class="fa-solid fa-house"><span>Main Menu</span></a>';
 }
+// Comment to besarta to close this func
