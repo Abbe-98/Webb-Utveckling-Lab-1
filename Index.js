@@ -1,3 +1,16 @@
+    function showPage(pageId) 
+    {
+      // Hide all pages
+      var pages = document.querySelectorAll('.page');
+      pages.forEach(function(page) 
+      {
+        page.classList.remove('active');
+      });
+
+      // Show the selected page
+      document.getElementById(pageId).classList.add('active');
+    }
+
 // JavaScript for Page Navigation
 // ------------------------------------------------------------
 function showPage(pageId) {
@@ -103,3 +116,4 @@ function exitGame(e) {
     '<a href="#Main_Menu" onclick="showPage(\'Main_Menu\')" class="fa-solid fa-house"><span>Main Menu</span></a>';
 }
 // Comment to besarta to close this func
+
