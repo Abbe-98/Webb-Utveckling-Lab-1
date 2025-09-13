@@ -1,20 +1,14 @@
-    body {
+body {
   margin: 0;
   height: 100vh; /* full höjd */
   position: relative;
     }
 
-    /* Style for Over Menu */
-    .menu {
-      background-color: #1271e6;
-      padding: 5px;
-      box-sizing: border-box;
-      justify-content: center;
     body::before {
   content: "";
   position: fixed;
   inset: 0; /* top:0; right:0; bottom:0; left:0 */
-  background-image: url('Icons/image.png');
+  background-image: url('Icons/image1.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -27,19 +21,6 @@
       align-items: center;
       display: flex;    /* Lodrätt*/
       position: fixed;
-      top: 0;
-      width: 100%;
-    }
-
-    /* Style for Under Menu */
-    .footer {
-      background-color: #1271e6;
-      padding: 5px;
-      box-sizing: border-box;
-      justify-content: center;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 100px;
       bottom: 0;
       /* gap: 0px; put space between items */
       width: 100%;
@@ -65,18 +46,6 @@
       justify-content: space-evenly;
       align-items: center;
       text-decoration: none;
-      display: block;
-      background-color: #268ef0;
-      border-radius: 5px;
-      text-align: center;
-      display: inline-block;
-      font-size: 15px; 
-      width: 110px;
-      height: 40px;
-      }
-
-    .menu a:hover, .footer a:hover {
-      background-color: #76b7f5;
       flex-shrink: 1;
       width: 235px;
       font-size: 35px;
@@ -101,12 +70,6 @@
     .content {
       width: 100%;
       position: fixed;
-      top: 80px;                /* justera till din header-höjd */
-      bottom: 90px;       
-      background-image:url('image114.png');    
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;      
         /* centrera innehållet */
       display: grid;
       grid-template-rows: auto auto auto auto auto; /* 4 rader */
@@ -116,7 +79,7 @@
     }
 
     /* Hide all pages initially */
-    .page {    
+    .page {
       display: none;
     }
 
@@ -124,47 +87,6 @@
     .page.active {
       display: block;
       text-align: center;
-    }
-
-    #Main_Menu.active {
-      background-image:url('image114.png');    
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    #settings.active {
-      background-color: aliceblue;
-      width: 400px;   /* exempel: gör den bredare */
-      height: 300px;  /* exempel: gör den högre */
-      font-size: 20px; /* för större text */
-      padding: 20px; /* mer utrymme inom */
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    #instructions.active {
-      background-color: aliceblue;
-      width: 400px;   /* exempel: gör den bredare */
-      height: 300px;  /* exempel: gör den högre */
-      font-size: 20px; /* för större text */
-      padding: 20px; /* mer utrymme inom */
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    #high_scores.active {
-      background-color: aliceblue;
-      width: 400px;   /* exempel: gör den bredare */
-      height: 300px;  /* exempel: gör den högre */
-      font-size: 20px; /* för större text */
-      padding: 20px; /* mer utrymme inom */
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
       background: azure;
       border-radius: 40px;
       width: 90%;
