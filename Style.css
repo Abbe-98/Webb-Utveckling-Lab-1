@@ -1,20 +1,14 @@
-    body {
+body {
   margin: 0;
   height: 100vh; /* full höjd */
   position: relative;
     }
 
-    /* Style for Over Menu */
-    .menu {
-      background-color: #1271e6;
-      padding: 5px;
-      box-sizing: border-box;
-      justify-content: center;
     body::before {
   content: "";
   position: fixed;
   inset: 0; /* top:0; right:0; bottom:0; left:0 */
-  background-image: url('Icons/image.png');
+  background-image: url('Icons/image1.png');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -27,19 +21,6 @@
       align-items: center;
       display: flex;    /* Lodrätt*/
       position: fixed;
-      top: 0;
-      width: 100%;
-    }
-
-    /* Style for Under Menu */
-    .footer {
-      background-color: #1271e6;
-      padding: 5px;
-      box-sizing: border-box;
-      justify-content: center;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 100px;
       bottom: 0;
       /* gap: 0px; put space between items */
       width: 100%;
@@ -65,18 +46,6 @@
       justify-content: space-evenly;
       align-items: center;
       text-decoration: none;
-      display: block;
-      background-color: #268ef0;
-      border-radius: 5px;
-      text-align: center;
-      display: inline-block;
-      font-size: 15px; 
-      width: 110px;
-      height: 40px;
-      }
-
-    .menu a:hover, .footer a:hover {
-      background-color: #76b7f5;
       flex-shrink: 1;
       width: 235px;
       font-size: 35px;
@@ -101,12 +70,6 @@
     .content {
       width: 100%;
       position: fixed;
-      top: 80px;                /* justera till din header-höjd */
-      bottom: 90px;       
-      background-image:url('image114.png');    
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;      
         /* centrera innehållet */
       display: grid;
       grid-template-rows: auto auto auto auto auto; /* 4 rader */
@@ -116,7 +79,7 @@
     }
 
     /* Hide all pages initially */
-    .page {    
+    .page {
       display: none;
     }
 
@@ -124,51 +87,10 @@
     .page.active {
       display: block;
       text-align: center;
-    }
-
-    #Main_Menu.active {
-      background-image:url('image114.png');    
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-    #settings.active {
-      background-color: aliceblue;
-      width: 400px;   /* exempel: gör den bredare */
-      height: 300px;  /* exempel: gör den högre */
-      font-size: 20px; /* för större text */
-      padding: 20px; /* mer utrymme inom */
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    #instructions.active {
-      background-color: aliceblue;
-      width: 400px;   /* exempel: gör den bredare */
-      height: 300px;  /* exempel: gör den högre */
-      font-size: 20px; /* för större text */
-      padding: 20px; /* mer utrymme inom */
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    #high_scores.active {
-      background-color: aliceblue;
-      width: 400px;   /* exempel: gör den bredare */
-      height: 300px;  /* exempel: gör den högre */
-      font-size: 20px; /* för större text */
-      padding: 20px; /* mer utrymme inom */
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
       background: azure;
       border-radius: 40px;
-      width: 90%;
-      height: 90%;
+      width: 75%;
+      height: 100%;
       grid-row: 1 / 6;
       overflow: auto;
 
@@ -303,4 +225,160 @@
   justify-content: center;
   align-items: center;
   color: white;
+}
+
+/* Input box */
+.game-input {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: #bbb;
+  background-color: #3fa968;
+  border: 2px solid #2c758778;
+  border-radius: 10px;
+  padding: 12px 20px;
+  width: 80%;
+  text-align: center;
+
+  /* neon glow */
+  box-shadow: 0 0 10px #00ffea, 0 0 20px #0088ff inset;
+}
+
+/* Input focus effect */
+.game-input:focus {
+  outline: none;
+  border-color: #27AE60;
+  box-shadow: 0 0 15px #27AE60, 0 0 30px #27AE60 inset;
+}
+
+/* Placeholder styling */
+.game-input::placeholder {
+  color: #bbb;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Container for difficulty */
+.difficulty-options {
+  margin-top: 20px;
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  font-family: 'Orbitron', sans-serif;
+  color: #000;
+    /* Neon text glow */
+  text-shadow: 0 0 5px #00ffea,
+               0 0 10px #00ccff,
+               0 0 20px #0088ff;
+  font-size: 1.1rem;
+}
+
+/* Hide the default checkbox */
+.game-checkbox input {
+  display: none;
+}
+
+/* Custom checkbox style */
+.game-checkbox {
+  position: relative;
+  cursor: pointer;
+  padding-left: 35px;
+  user-select: none;
+}
+
+/* Checkbox square */
+.game-checkbox .checkmark {
+  position: absolute;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  background-color: #3fa968;
+  border: 2px solid #27AE60;
+  border-radius: 6px;
+  box-shadow: 0 0 10px #00ffea, 0 0 20px #0088ff inset;
+}
+
+/* When checked */
+.game-checkbox input:checked + .checkmark {
+  background-color: #27AE60;
+  box-shadow: 0 0 10px #27AE60, 0 0 20px #27AE60 inset;
+}
+
+/* Add a glowing tick effect */
+.game-checkbox input:checked + .checkmark::after {
+  content: "✔";
+  color: #bbb;
+  font-size: 16px;
+  position: absolute;
+  left: 3px;
+  top: -1px;
+}
+
+/* Start Game button */
+.start-game-button {
+  margin-top: 90px;
+  padding: 15px 40px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.2rem;
+  color: #bbb;
+  background: #232e27;
+  border: 2px solid #2c7587;
+  border-radius: 12px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  /* neon glow */
+  box-shadow: 0 0 15px #00ffea, 0 0 25px #0088ff inset;
+  transition: 0.2s ease-in-out;
+}
+
+/* Hover effect */
+.game-button:hover {
+  background: #00ffea;
+  color: #111;
+  box-shadow: 0 0 20px #00ffea, 0 0 40px #00ffea;
+}
+
+/* Active click effect */
+.game-button:active {
+  transform: scale(0.95);
+  box-shadow: 0 0 10px #27AE60, 0 0 20px #27AE60 inset;
+}
+
+#rightAnswer {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #4adf25;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  bottom: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+#wrongAnswer {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #ff4c4c;
+  color: #ffffff;
+  text-align: center;
+  border-radius: 2px;
+  padding: 16px;
+  position: fixed;
+  bottom: 200px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+
+#rightAnswer.show, #wrongAnswer.show {
+  visibility: visible;
+  opacity: 1;
 }

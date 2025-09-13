@@ -1,16 +1,3 @@
-    function showPage(pageId) 
-    {
-      // Hide all pages
-      var pages = document.querySelectorAll('.page');
-      pages.forEach(function(page) 
-      {
-        page.classList.remove('active');
-      });
-
-      // Show the selected page
-      document.getElementById(pageId).classList.add('active');
-    }
-
 // JavaScript for Page Navigation
 // ------------------------------------------------------------
 function showPage(pageId) {
@@ -85,6 +72,15 @@ function startGame() {
 
   document.querySelector('.fa-solid.fa-house').style.display = 'none';
   document.querySelector('.fa-solid.fa-lightbulb').style.display = 'none';
+  document.querySelector('.content').style.top = "0";
+  
+  showPage("Game_Main");
+  
+  let gameMain = document.getElementById("Game_Main");
+  if (gameMain.classList.contains("active")) {
+    gameMain.style.height = "90%"
+    gameMain.style.width = "90%";
+  }
 
   // add Exit button
   document.querySelector('.footer-tabs').innerHTML =
@@ -108,6 +104,8 @@ function exitGame(e) {
 
   // restore footer and menu
   document.querySelector('.menu').style.display = 'flex';
+  document.getElementById('Game_Main').classList.remove('active');
+  document.querySelector('.content').style.top = "";
   document.getElementById('Main_Menu').classList.add('active2');
 
   // restore original footer-tabs
@@ -115,5 +113,48 @@ function exitGame(e) {
     '<a href="#instructions" onclick="showPage(\'instructions\')" class="fa-solid fa-lightbulb"><span>Instructions</span></a>' +
     '<a href="#Main_Menu" onclick="showPage(\'Main_Menu\')" class="fa-solid fa-house"><span>Main Menu</span></a>';
 }
-// Comment to besarta to close this func
 
+function actuallyStartGame() {
+  // Välj sidan du vill visa
+  showPage('actualGamePage');
+
+  // Generera en mattefråga
+  const num1 = Math.floor(Math.random() * 10);
+  const num2 = Math.floor(Math.random() * 10);
+  const correctAnswer = num1 + num2;
+  document.getElementById('question-text').innerText = `${num1} + ${num2} = ?`;
+
+  // Lägg till svarshandling
+  document.getElementById('answer-input').value = ''; // nollställ
+  document.getElementById('answer-input').dataset.correctAnswer = correctAnswer; // spara rätt svar
+  
+  //checkAnswer();  // Lägg till event på Check-knappen
+  // Lägg till event på Finish-knappen
+  // (om du har en Finish-knapp inuti HTML eller implementerar den dynamiskt)
+}
+
+function checkAnswer() {
+  const answerInput = document.getElementById('answer-input');
+  const userAnswer = parseInt(answerInput.value);
+  const correctAnswer = parseInt(answerInput.dataset.correctAnswer);
+
+  if (userAnswer === correctAnswer) {
+    showRightAnswer('Rätt svar!');
+  } else {
+    showWrongAnswer('Fel svar, försök igen!');
+  }
+}
+
+function showRightAnswer(message) {
+  const showRightAnswear = document.getElementById('rightAnswer');
+  rightAnswer.innerText = message;
+  rightAnswer.className = 'show';
+  setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
+}
+
+function showWrongAnswer(message) {
+  const showWrongAnswer = document.getElementById('wrongAnswer');
+  showWrongAnswer.innerText = message;
+  showWrongAnswer.className = 'show';
+  setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
+}
