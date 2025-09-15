@@ -12,6 +12,8 @@
 
   <!-- Load JS after HTML is parsed -->
   <script defer src="index.js"></script>
+
+  <script defer src="GameFunc.js"></script>
 </head>
 <body>
 
@@ -49,42 +51,10 @@
       <thead>
       <tr>
         <th>Player</th>
-        <th>Score</th>
+        <th>Mode - Time(sec) - Status</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>Ada</td>
-        <td>12000</td>
-      </tr>
-      <tr>
-        <td>Ada</td>
-        <td>12000</td>
-      </tr>
-      <tr>
-        <td>Linus</td>
-        <td>9800</td>
-      </tr>
-      <tr>
-        <td>Grace</td>
-        <td>8700</td>
-      </tr>
-      <tr>
-        <td>Alan</td>
-        <td>7600</td>
-      </tr>
-      <tr>
-        <td>Katherine</td>
-        <td>6500</td>
-      </tr>
-      <tr>
-        <td>Tim</td>
-        <td>5400</td>
-      </tr>
-      <tr>
-        <td>Margaret</td>
-        <td>4300</td>
-      </tr>
       </tbody>
     </table>    
     </div>
@@ -117,8 +87,38 @@
     </label>
   </div>
     <!-- Start button -->
-  <button id="start-btn" class="game-button">Start Game</button>
+  <button id="start-btn" type="button" onclick="actuallyStartGame()" class="game-button">Start Game</button>
+
+
+    <!-- Feedback messages -->
+  <div id="feedbkIfEmpty"></div>
  </div>
+
+
+<div id="actualGamePage" class="page">
+  <h1>Game</h1>
+
+  <p id="timer-display">Time Left: 60s</p>
+  <p id="correctAnswersCount">Question: 0/10</p>
+
+  <div id="game-container">
+    <div id="question-area">
+      <p id="question-text"></p>
+      <input 
+        type="text" 
+        id="answer-input" 
+        class="game-input" 
+        placeholder="Type your answer..." 
+        autocomplete="off"
+      >
+      <button type="button" id="submitButton" onclick="checkAnswer()">Submit</button>
+    </div>
+  </div>
+
+  <!-- Feedback messages -->
+  <div id="rightAnswer"></div>
+  <div id="wrongAnswer"></div>
+</div>
 
   </main>
 
