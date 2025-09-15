@@ -117,21 +117,33 @@ function exitGame(e) {
 function actuallyStartGame() {
   // Välj sidan du vill visa
   showPage('actualGamePage');
+  startTimer(); // startar nerräkningen automatiskt
+  generateQuestions();
+  checkWinOrLose();
 
-  // Generera en mattefråga
+  }
+
+  //funktion för att kontrollera om vinst eller förlust
+  
+
+const questions = [];
+
+function generateQuestions() {
+  
   const num1 = Math.floor(Math.random() * 10);
   const num2 = Math.floor(Math.random() * 10);
-  const correctAnswer = num1 + num2;
+  const correctAnswer = num1 + num2; 
   document.getElementById('question-text').innerText = `${num1} + ${num2} = ?`;
 
   // Lägg till svarshandling
   document.getElementById('answer-input').value = ''; // nollställ
   document.getElementById('answer-input').dataset.correctAnswer = correctAnswer; // spara rätt svar
-  
-  //checkAnswer();  // Lägg till event på Check-knappen
-  // Lägg till event på Finish-knappen
-  // (om du har en Finish-knapp inuti HTML eller implementerar den dynamiskt)
+  //checkAnswer(); // kallas i html
+  console.clear();
+
 }
+
+let correctAnswersCount = 0;
 
 function checkAnswer() {
   const answerInput = document.getElementById('answer-input');
@@ -140,21 +152,74 @@ function checkAnswer() {
 
   if (userAnswer === correctAnswer) {
     showRightAnswer('Rätt svar!');
-  } else {
+    correctAnswersCount++;
+
+    document.getElementById('correctAnswersCount').innerText = `Question: ${correctAnswersCount}/10`;
+
+    if (correctAnswersCount === 2) {
+      wonGame();
+    }
+    else{
+    generateQuestions();
+    //console.log(`Antal rätta svar: ${correctAnswersCount}/10`);
+    }
+  }
+  if (timeLeft === 0) {
+    lostGame();
+  }
+    else {
     showWrongAnswer('Fel svar, försök igen!');
   }
+
 }
 
 function showRightAnswer(message) {
-  const showRightAnswear = document.getElementById('rightAnswer');
-  rightAnswer.innerText = message;
-  rightAnswer.className = 'show';
-  setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
+  const showRightAnswer = document.getElementById('rightAnswer');
+  showRightAnswer.innerText = message;
+  showRightAnswer.className = 'show';
+  setTimeout(() => { showRightAnswer.className = showRightAnswer.className.replace('show', ''); }, 1000);
 }
 
 function showWrongAnswer(message) {
   const showWrongAnswer = document.getElementById('wrongAnswer');
   showWrongAnswer.innerText = message;
   showWrongAnswer.className = 'show';
-  setTimeout(() => { toast.className = toast.className.replace('show', ''); }, 3000);
+  setTimeout(() => { showWrongAnswer.className = showWrongAnswer.className.replace('show', ''); }, 1000);
+}
+
+function startTimer() {
+  let timeLeft = 60; // eller vilken tid vi vill ha
+  const timerDisplay = document.getElementById('timer-display');
+
+  timerID = setInterval(() => {
+    timeLeft--;
+    if (timeLeft >= 0) {
+      timerDisplay.innerText = `Time Left: ${timeLeft}s`;
+    }
+    if (timeLeft <= 0) {
+      clearInterval(timerID); // stoppar timern
+      timerDisplay.innerText = "Tiden är slut!";
+      // Lägg till vad som ska hända när tiden är slut
+      lostGame();
+    }
+  }, 1000);
+}
+
+function stopTimer(){
+  clearInterval(timerID);
+}
+
+function wonGame(){
+  stopTimer();
+  showRightAnswer('you won');
+}
+
+function lostGame(){
+showWrongAnswer('you lost');
+}
+
+function endGame(){
+//kod för att stoppa spelet
+
+
 }
