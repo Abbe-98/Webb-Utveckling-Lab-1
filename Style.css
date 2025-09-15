@@ -346,7 +346,6 @@ body {
 }
 
 
-/* -------------------------------------*/
 #rightAnswer {
   visibility: hidden;
   min-width: 250px;
@@ -409,4 +408,3 @@ body {
   visibility: visible;
   opacity: 1;
 }
-/* -------------------------------------*/
