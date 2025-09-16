@@ -101,12 +101,29 @@ function startGame() {
 function exitGame(e) {
   e.preventDefault(); // prevent jumping to anchor
   document.querySelector('.fa-solid.fa-arrow-right-from-bracket').style.display = 'none';
+  
 
   // restore footer and menu
   document.querySelector('.menu').style.display = 'flex';
   document.getElementById('Game_Main').classList.remove('active');
+  document.getElementById('actualGamePage').classList.remove('active');
   document.querySelector('.content').style.top = "";
   document.getElementById('Main_Menu').classList.add('active2');
+
+
+    // Reset username input
+  document.getElementById("Username-input").value = "";
+
+  // Reset difficulty checkboxes
+  document.getElementById("easy-mode").checked = false;
+  document.getElementById("hard-mode").checked = false;
+
+  // Reset questios counter for the game
+  correctAnswersCount = 0;
+  questionCounter.innerText = `Question: ${correctAnswersCount}/10`;
+
+  clearInterval(timerID);
+  timeLeft = 0;
 
   // restore original footer-tabs
   document.querySelector('.footer-tabs').innerHTML =
