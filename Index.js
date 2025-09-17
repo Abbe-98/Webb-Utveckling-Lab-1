@@ -101,125 +101,32 @@ function startGame() {
 function exitGame(e) {
   e.preventDefault(); // prevent jumping to anchor
   document.querySelector('.fa-solid.fa-arrow-right-from-bracket').style.display = 'none';
+  
 
   // restore footer and menu
   document.querySelector('.menu').style.display = 'flex';
   document.getElementById('Game_Main').classList.remove('active');
+  document.getElementById('actualGamePage').classList.remove('active');
   document.querySelector('.content').style.top = "";
   document.getElementById('Main_Menu').classList.add('active2');
+
+
+    // Reset username input
+  document.getElementById("Username-input").value = "";
+
+  // Reset difficulty checkboxes
+  document.getElementById("easy-mode").checked = false;
+  document.getElementById("hard-mode").checked = false;
+
+  // Reset questios counter for the game
+  correctAnswersCount = 0;
+  questionCounter.innerText = `Question: ${correctAnswersCount}/10`;
+
+  clearInterval(timerID);
+  timeLeft = 0;
 
   // restore original footer-tabs
   document.querySelector('.footer-tabs').innerHTML =
     '<a href="#instructions" onclick="showPage(\'instructions\')" class="fa-solid fa-lightbulb"><span>Instructions</span></a>' +
     '<a href="#Main_Menu" onclick="showPage(\'Main_Menu\')" class="fa-solid fa-house"><span>Main Menu</span></a>';
-}
-
-function actuallyStartGame() {
-  // Välj sidan du vill visa
-  showPage('actualGamePage');
-  startTimer(); // startar nerräkningen automatiskt
-  generateQuestions();
-  checkWinOrLose();
-
-  }
-
-  //funktion för att kontrollera om vinst eller förlust
-  
-
-const questions = [];
-
-function generateQuestions() {
-  
-  const num1 = Math.floor(Math.random() * 10);
-  const num2 = Math.floor(Math.random() * 10);
-  const correctAnswer = num1 + num2; 
-  document.getElementById('question-text').innerText = `${num1} + ${num2} = ?`;
-
-  // Lägg till svarshandling
-  document.getElementById('answer-input').value = ''; // nollställ
-  document.getElementById('answer-input').dataset.correctAnswer = correctAnswer; // spara rätt svar
-  //checkAnswer(); // kallas i html
-  console.clear();
-
-}
-
-let correctAnswersCount = 0;
-
-function checkAnswer() {
-  const answerInput = document.getElementById('answer-input');
-  const userAnswer = parseInt(answerInput.value);
-  const correctAnswer = parseInt(answerInput.dataset.correctAnswer);
-
-  if (userAnswer === correctAnswer) {
-    showRightAnswer('Rätt svar!');
-    correctAnswersCount++;
-
-    document.getElementById('correctAnswersCount').innerText = `Question: ${correctAnswersCount}/10`;
-
-    if (correctAnswersCount === 2) {
-      wonGame();
-    }
-    else{
-    generateQuestions();
-    //console.log(`Antal rätta svar: ${correctAnswersCount}/10`);
-    }
-  }
-  if (timeLeft === 0) {
-    lostGame();
-  }
-    else {
-    showWrongAnswer('Fel svar, försök igen!');
-  }
-
-}
-
-function showRightAnswer(message) {
-  const showRightAnswer = document.getElementById('rightAnswer');
-  showRightAnswer.innerText = message;
-  showRightAnswer.className = 'show';
-  setTimeout(() => { showRightAnswer.className = showRightAnswer.className.replace('show', ''); }, 1000);
-}
-
-function showWrongAnswer(message) {
-  const showWrongAnswer = document.getElementById('wrongAnswer');
-  showWrongAnswer.innerText = message;
-  showWrongAnswer.className = 'show';
-  setTimeout(() => { showWrongAnswer.className = showWrongAnswer.className.replace('show', ''); }, 1000);
-}
-
-function startTimer() {
-  let timeLeft = 60; // eller vilken tid vi vill ha
-  const timerDisplay = document.getElementById('timer-display');
-
-  timerID = setInterval(() => {
-    timeLeft--;
-    if (timeLeft >= 0) {
-      timerDisplay.innerText = `Time Left: ${timeLeft}s`;
-    }
-    if (timeLeft <= 0) {
-      clearInterval(timerID); // stoppar timern
-      timerDisplay.innerText = "Tiden är slut!";
-      // Lägg till vad som ska hända när tiden är slut
-      lostGame();
-    }
-  }, 1000);
-}
-
-function stopTimer(){
-  clearInterval(timerID);
-}
-
-function wonGame(){
-  stopTimer();
-  showRightAnswer('you won');
-}
-
-function lostGame(){
-showWrongAnswer('you lost');
-}
-
-function endGame(){
-//kod för att stoppa spelet
-
-
 }
