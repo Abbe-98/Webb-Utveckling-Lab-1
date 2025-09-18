@@ -127,9 +127,25 @@ function exitGame(e) {
   clearInterval(timerID);
   timeLeft = 0;
 
+
+    // Reset username input
+  document.getElementById("Username-input").value = "";
+
+  // Reset difficulty checkboxes
+  document.getElementById("easy-mode").checked = false;
+  document.getElementById("hard-mode").checked = false;
+
+  // Reset questios counter for the game
+  correctAnswersCount = 0;
+  questionCounter.innerText = `Question: ${correctAnswersCount}/10`;
+
+  clearInterval(timerID);
+  timeLeft = 0;
+
   // restore original footer-tabs
   document.querySelector('.footer-tabs').innerHTML =
     '<a href="#instructions" onclick="showPage(\'instructions\')" class="fa-solid fa-lightbulb"><span>Instructions</span></a>' +
     '<a href="#Main_Menu" onclick="showPage(\'Main_Menu\')" class="fa-solid fa-house"><span>Main Menu</span></a>';
+
 
 }

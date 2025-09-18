@@ -56,7 +56,6 @@ function actuallyStartGame() {
   startTimer(); // startar nerräkningen automatiskt
   generateQuestions();
 
-}  
 
 const questions = [];
 
@@ -76,7 +75,6 @@ function generateQuestions() {
   //om tiden går ut
   
 
-}
 
 let correctAnswersCount = 0;
 let questionCounter = document.getElementById("correctAnswersCount");
@@ -121,6 +119,12 @@ function checkAnswer() {
   } else {
     showWrongAnswer("The answer is wrong!");
   }  
+  }
+
+  // Case 4: Time runs out → Lose
+  if (timeLeft === 0) {
+    lostGame();
+  }
 
   answerInput.value = "";
 }
@@ -153,6 +157,7 @@ let timeLeft;
 
 function startTimer() {
    timeLeft = currentMode === "Easy" ? 60 : 30; // if easy easy 60 sek, else hard 30 sek 
+   timeLeft = 5;
   const timerDisplay = document.getElementById('timer-display');
 
   timerDisplay.innerText = `Time Left: ${timeLeft}s`;
@@ -179,6 +184,7 @@ function startTimer() {
   }, 1000);
 }
 
+
 // ------------------------------------------------ //
 function stopTimer(){
   clearInterval(timerID);
@@ -196,6 +202,14 @@ function wonGame(){
 function lostGame(){
     stopTimer();
     showPage('lostPage');
+
+  stopTimer();
+  showRightAnswer('You Won');
+}
+
+function lostGame(){
+    stopTimer();
+    showWrongAnswer('you lost');
 }
 
 
@@ -240,7 +254,4 @@ window.onload = () => {
   renderHighScores();
 };
 // ------------------------------------------------ //
-
-
-
 
