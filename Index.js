@@ -109,6 +109,8 @@ function exitGame(e) {
   document.getElementById('actualGamePage').classList.remove('active');
   document.querySelector('.content').style.top = "";
   document.getElementById('Main_Menu').classList.add('active2');
+  document.getElementById('wonPage').classList.remove('active');
+  document.getElementById('lostPage').classList.remove('active');
 
 
     // Reset username input
@@ -129,4 +131,5 @@ function exitGame(e) {
   document.querySelector('.footer-tabs').innerHTML =
     '<a href="#instructions" onclick="showPage(\'instructions\')" class="fa-solid fa-lightbulb"><span>Instructions</span></a>' +
     '<a href="#Main_Menu" onclick="showPage(\'Main_Menu\')" class="fa-solid fa-house"><span>Main Menu</span></a>';
+
 }

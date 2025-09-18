@@ -152,7 +152,7 @@ let stopSec;  // when the timer stops
 let timeLeft;
 
 function startTimer() {
-   timeLeft = currentMode === "Easy" ? 60 : 5; // if easy easy 60 sek, else hard 30 sek 
+   timeLeft = currentMode === "Easy" ? 60 : 30; // if easy easy 60 sek, else hard 30 sek 
   const timerDisplay = document.getElementById('timer-display');
 
   timerDisplay.innerText = `Time Left: ${timeLeft}s`;
