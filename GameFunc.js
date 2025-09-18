@@ -22,6 +22,10 @@ if (hardMode.checked) {
 function actuallyStartGame() {
   const username = document.getElementById("Username-input").value.trim();
 
+  //nollställ poäng
+  correctAnswersCount = 0;
+  questionCounter.innerText = `Question: ${correctAnswersCount}/10`;
+
   // Check username not empty
   if (!username) {
     showFeedbkIfEmpty("Please enter your username before starting!");
@@ -183,7 +187,11 @@ function stopTimer(){
 function wonGame(){
     stopTimer();
     showPage('wonPage');
+    
+  // Eventuellt nullställ poäng här också, om det behövs
 }
+
+
 
 function lostGame(){
     stopTimer();
@@ -232,3 +240,7 @@ window.onload = () => {
   renderHighScores();
 };
 // ------------------------------------------------ //
+
+
+
+
