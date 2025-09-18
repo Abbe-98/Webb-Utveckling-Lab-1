@@ -22,7 +22,6 @@ if (hardMode.checked) {
 function actuallyStartGame() {
   const username = document.getElementById("Username-input").value.trim();
 
-
   // Check username not empty
   if (!username) {
     showFeedbkIfEmpty("Please enter your username before starting!");
@@ -53,7 +52,7 @@ function actuallyStartGame() {
   startTimer(); // startar nerräkningen automatiskt
   generateQuestions();
 
-  }  
+}  
 
 const questions = [];
 
@@ -69,6 +68,9 @@ function generateQuestions() {
   document.getElementById('answer-input').dataset.correctAnswer = correctAnswer; // spara rätt svar
   //checkAnswer(); // kallas i html
   console.clear();
+
+  //om tiden går ut
+  
 
 }
 
@@ -114,12 +116,7 @@ function checkAnswer() {
     return;
   } else {
     showWrongAnswer("The answer is wrong!");
-  }
-
-  // Case 4: Time runs out → Lose
-  if (timeLeft === 0) {
-    lostGame();
-  }
+  }  
 
   answerInput.value = "";
 }
@@ -151,7 +148,7 @@ let stopSec;  // when the timer stops
 let timeLeft;
 
 function startTimer() {
-   timeLeft = currentMode === "Easy" ? 60 : 30; // if easy easy 60 sek, else hard 30 sek 
+   timeLeft = currentMode === "Easy" ? 60 : 5; // if easy easy 60 sek, else hard 30 sek 
   const timerDisplay = document.getElementById('timer-display');
 
   timerDisplay.innerText = `Time Left: ${timeLeft}s`;
@@ -165,6 +162,8 @@ function startTimer() {
     if (timeLeft <= 0) {
       clearInterval(timerID);
       timerDisplay.innerText = "Tiden är slut!";
+        
+      lostGame();
 
       // Only save Loser if the game hasn’t already ended
       if (correctAnswersCount < 10) {
@@ -176,20 +175,19 @@ function startTimer() {
   }, 1000);
 }
 
-
 // ------------------------------------------------ //
 function stopTimer(){
   clearInterval(timerID);
 }
 
 function wonGame(){
-  stopTimer();
-  showRightAnswer('You Won');
+    stopTimer();
+    showPage('wonPage');
 }
 
 function lostGame(){
     stopTimer();
-    showWrongAnswer('you lost');
+    showPage('lostPage');
 }
 
 
