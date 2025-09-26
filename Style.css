@@ -2,225 +2,250 @@ body {
   margin: 0;
   height: 100vh; /* full höjd */
   position: relative;
-    }
+}
 
-    body::before {
+body::before {
   content: "";
   position: fixed;
   inset: 0; /* top:0; right:0; bottom:0; left:0 */
-  background-image: url('Icons/image1.png');
+  background-image: url("Icons/image1.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1; /* lägg bakom alla element */
 }
 
-    /* Style for the left menu */
-    .menu {
-      justify-content: space-evenly;
-      align-items: center;
-      display: flex;    /* Lodrätt*/
-      position: fixed;
-      bottom: 0;
-      /* gap: 0px; put space between items */
-      width: 100%;
-      top: 0;
-      height: 130px;
-    }
+/* For phones and smaller screens */
+@media (max-width: 600px) {
+  .footer-tabs a,
+  .menu a {
+    width: 175px !important;
+    height: 80px !important;
+  }
 
-    .footer-tabs {
-      /* background-color: #333; */
-      justify-content: space-evenly;
-      align-items: center;
-      display: flex;    /* Lodrätt*/
-      position: fixed;
-      bottom: 0;
-      /* gap: 0px; put space between items c96300 #23cf3b  */
-      width: 100%;
-      height: 130px;
-    }
+  .menu span,
+  .menu a,
+  .footer-tabs a,
+  span {
+    font-size: 25px !important;
+  }
+}
 
-    .footer-tabs a, .menu a {
-      display: flex;
-      flex-direction: column;
-      justify-content: space-evenly;
-      align-items: center;
-      text-decoration: none;
-      flex-shrink: 1;
-      width: 235px;
-      font-size: 35px;
-      height: 100px;
-      color: #ffffff;
-      border-radius: 10px;
-      background: linear-gradient(90deg, #3accfe 0%, #23cf3a77 50%, #34c8ff 100%)
-    }
+/* Style for the left menu */
+.menu {
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex; /* Lodrätt*/
+  position: fixed;
+  bottom: 0;
+  /* gap: 0px; put space between items */
+  width: 100%;
+  top: 0;
+  height: 130px;
+}
 
-    .menu span, .footer-tabs span {
-  font-family: 'Cambria Math', 'STIX Two Math', 'Times New Roman', serif;
+.footer-tabs {
+  /* background-color: #333; */
+  justify-content: space-evenly;
+  align-items: center;
+  display: flex; /* Lodrätt*/
+  position: fixed;
+  bottom: 0;
+  /* gap: 0px; put space between items c96300 #23cf3b  */
+  width: 100%;
+  height: 130px;
+}
+
+.footer-tabs a,
+.menu a {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 1;
+  width: 235px;
+  font-size: 35px;
+  height: 100px;
+  color: #ffffff;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #3accfe 0%, #23cf3a77 50%, #34c8ff 100%);
+}
+
+.menu span,
+.footer-tabs span {
+  font-family: "Cambria Math", "STIX Two Math", "Times New Roman", serif;
   font-size: 32px;
 }
 
-    .menu a:hover, .footer-tabs a:hover {
-      background: #45a049;
-      cursor: pointer;
+.menu a:hover,
+.footer-tabs a:hover {
+  background: #45a049;
+  cursor: pointer;
+}
 
-    }
+/* Style for the right content */
+.content {
+  width: 100%;
+  position: fixed;
+  /* centrera innehållet */
+  display: grid;
+  grid-template-rows: auto auto auto auto auto; /* 4 rader */
+  place-items: center; /* = align-items + justify-items */
+  top: 130px;
+  bottom: 130px; /* justera till din header-höjd */
+}
 
-    /* Style for the right content */
-    .content {
-      width: 100%;
-      position: fixed;
-        /* centrera innehållet */
-      display: grid;
-      grid-template-rows: auto auto auto auto auto; /* 4 rader */
-    place-items: center;   /* = align-items + justify-items */
-      top: 130px;    
-      bottom: 130px;            /* justera till din header-höjd */
-    }
+/* Hide all pages initially */
+.page {
+  display: none;
+}
 
-    /* Hide all pages initially */
-    .page {
-      display: none;
-    }
+/* Show the page that is active */
+.page.active {
+  display: block;
+  text-align: center;
+  background: azure;
+  border-radius: 40px;
+  width: 75%;
+  height: 100%;
+  grid-row: 1 / 6;
+  overflow: auto;
+}
 
-    /* Show the page that is active */
-    .page.active {
-      display: block;
-      text-align: center;
-      background: azure;
-      border-radius: 40px;
-      width: 75%;
-      height: 100%;
-      grid-row: 1 / 6;
-      overflow: auto;
+.page.active2 {
+  display: block;
+  text-align: center;
+  grid-row: 3 / 5;
+}
 
-    }
+#Main_Menu button {
+  font-size: 45px;
+  padding: 35px;
+  border: none;
+  border-radius: 24px;
+  background-color: #ffffff; /* Grön bakgrund */
+  color: #4caf50; /* Vit text */
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 
-        .page.active2 {
-      display: block;
-      text-align: center;
-      grid-row : 3 / 5;
+  animation: fadeIn 0.5s ease-in-out infinite alternate;
 
-    }
+  &:hover {
+    background-color: #45a049; /* Mörkare grön vid hover */
+    color: #ffffff;
+    animation: none;
+  }
+}
 
-    #Main_Menu button {
-      font-size: 45px;
-      padding: 35px;
-      border: none;
-      border-radius: 24px;
-      background-color: #ffffff; /* Grön bakgrund */
-      color: #4CAF50; /* Vit text */
-      cursor: pointer;
-      transition: background-color 0.3s ease;
+table#scores-list {
+  border-collapse: collapse;
+  width: 95%;
+  display: inline-table;
+  margin-bottom: 20px;
+}
 
-      animation: fadeIn 0.5s ease-in-out  infinite alternate;
+table#scores-list th,
+table#scores-list td {
+  border: 2px solid #45a049b0;
+  padding: 8px;
+  text-align: left;
+  font-size: 24px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  /* text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6); */
+}
 
-      &:hover {
-        background-color: #45a049; /* Mörkare grön vid hover */
-        color: #ffffff;
-        animation: none;
-      }
-    }
+table#scores-list th {
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+  background-color: #45a049b0;
+  color: #ffffff;
+}
 
-    table#scores-list {
-      border-collapse: collapse;
-      width: 95%;
-      display: inline-table;
-      margin-bottom: 20px;
-    }
+table#scores-list tbody tr:nth-child(even) td {
+  background-color: #9ca09c4d;
+}
 
-    table#scores-list th, table#scores-list td {
-      border: 2px solid #45a049b0;
-      padding: 8px;
-      text-align: left;
-      font-size: 24px;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      /* text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6); */
-        }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-      table#scores-list th {
-       text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-       background-color: #45a049b0;
-       color: #ffffff;
-        }
-
-    table#scores-list tbody tr:nth-child(even) td{
-      background-color: #9ca09c4d;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-
-    #exitBtn {
+#exitBtn {
   background: #ff2700de;
-  color: white;            /* optional for text */
+  color: white; /* optional for text */
   transition: background 0.3s ease;
 }
 
 #exitBtn:hover {
   background: #45a049;
-  color: #000;             /* text turns black when hovered */
+  color: #000; /* text turns black when hovered */
 }
 
+h1 {
+  font-size: 3rem;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+  animation: gradient 3s ease infinite;
+}
 
-        h1 {
-            font-size: 3rem;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-            animation: gradient 3s ease infinite;
-        }
-        
-        @keyframes gradient {
-            0% { color: #34c8ff; }
-            50% { color: #f8ab00; }
-            100% { color: #34c8ff; }
-        }
+@keyframes gradient {
+  0% {
+    color: #34c8ff;
+  }
+  50% {
+    color: #f8ab00;
+  }
+  100% {
+    color: #34c8ff;
+  }
+}
 
-        #instructions p {
-          font-size: 24px;
-          line-height: 1.6;
-          text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        #settings label {
-          font-size: 24px;
-          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-          text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
-                }
+#instructions p {
+  font-size: 24px;
+  line-height: 1.6;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 
-        .checkbox-container, .checkbox-container label {
-          display: flex;
-          justify-content: center;
-        align-items: center; 
-      cursor: pointer;    } 
-                
-                        
-.checkbox-container input[type='checkbox'] {
-    cursor: pointer;
-    opacity: 0;
-    position: absolute;
+#settings label {
+  font-size: 24px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.6);
+}
+
+.checkbox-container,
+.checkbox-container label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.checkbox-container input[type="checkbox"] {
+  cursor: pointer;
+  opacity: 0;
+  position: absolute;
 }
 
 .checkbox-container label::after {
-    content: '';
-    width: 1em;
-    height: 1em;
-    margin-top: 2px;
-    border-radius: .15em;
-    border: .05em solid #000;
+  content: "";
+  width: 1em;
+  height: 1em;
+  margin-top: 2px;
+  border-radius: 0.15em;
+  border: 0.05em solid #000;
 }
 
-
-.checkbox-container label:has(input[type='checkbox']:focus)::after {
+.checkbox-container label:has(input[type="checkbox"]:focus)::after {
   box-shadow: 0 0 20px black;
 }
 
-.checkbox-container label:has(input[type='checkbox']:checked)::after {
-  content: '✔';
-  background-color: #27AE60;
+.checkbox-container label:has(input[type="checkbox"]:checked)::after {
+  content: "✔";
+  background-color: #27ae60;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -229,14 +254,13 @@ body {
 
 /* Input box */
 .game-input {
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 1.2rem;
   color: #bbb;
   background-color: #3fa968;
   border: 2px solid #2c758778;
   border-radius: 10px;
   padding: 12px 20px;
-  width: 80%;
   text-align: center;
 
   /* neon glow */
@@ -246,8 +270,8 @@ body {
 /* Input focus effect */
 .game-input:focus {
   outline: none;
-  border-color: #27AE60;
-  box-shadow: 0 0 15px #27AE60, 0 0 30px #27AE60 inset;
+  border-color: #27ae60;
+  box-shadow: 0 0 15px #27ae60, 0 0 30px #27ae60 inset;
 }
 
 /* Placeholder styling */
@@ -263,12 +287,10 @@ body {
   display: flex;
   gap: 30px;
   justify-content: center;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   color: #000;
-    /* Neon text glow */
-  text-shadow: 0 0 5px #00ffea,
-               0 0 10px #00ccff,
-               0 0 20px #0088ff;
+  /* Neon text glow */
+  text-shadow: 0 0 5px #00ffea, 0 0 10px #00ccff, 0 0 20px #0088ff;
   font-size: 1.1rem;
 }
 
@@ -283,6 +305,7 @@ body {
   cursor: pointer;
   padding-left: 35px;
   user-select: none;
+  margin-top: 5px;
 }
 
 /* Checkbox square */
@@ -292,15 +315,15 @@ body {
   width: 22px;
   height: 22px;
   background-color: #3fa968;
-  border: 2px solid #27AE60;
+  border: 2px solid #27ae60;
   border-radius: 6px;
   box-shadow: 0 0 10px #00ffea, 0 0 20px #0088ff inset;
 }
 
 /* When checked */
 .game-checkbox input:checked + .checkmark {
-  background-color: #27AE60;
-  box-shadow: 0 0 10px #27AE60, 0 0 20px #27AE60 inset;
+  background-color: #27ae60;
+  box-shadow: 0 0 10px #27ae60, 0 0 20px #27ae60 inset;
 }
 
 /* Add a glowing tick effect */
@@ -313,11 +336,17 @@ body {
   top: -1px;
 }
 
+#start-btn {
+  margin-top: 70px;
+}
+
 /* Start Game button */
-.game-button, #submitButton {
-  margin-top: 90px;
+.game-button,
+#submitButton,
+#spelaIgenButton {
+  margin-top: 10px;
   padding: 15px 40px;
-  font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 1.2rem;
   color: #bbb;
   background: #232e27;
@@ -342,10 +371,10 @@ body {
 /* Active click effect */
 .game-button:active {
   transform: scale(0.95);
-  box-shadow: 0 0 10px #27AE60, 0 0 20px #27AE60 inset;
+  box-shadow: 0 0 10px #27ae60, 0 0 20px #27ae60 inset;
 }
 
-
+/* -------------------------------------*/
 #rightAnswer {
   visibility: hidden;
   min-width: 250px;
@@ -396,15 +425,19 @@ body {
   transition: opacity 0.5s, visibility 0.5s;
 }
 
-#question-text{
+#question-text {
   font-size: 30px;
 }
 
-#correctAnswersCount, #timer-display {
+#correctAnswersCount,
+#timer-display {
   font-size: 20px;
 }
 
-#rightAnswer.show, #wrongAnswer.show, #feedbkIfEmpty.show {
+#rightAnswer.show,
+#wrongAnswer.show,
+#feedbkIfEmpty.show {
   visibility: visible;
   opacity: 1;
 }
+/* -------------------------------------*/
