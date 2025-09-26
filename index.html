@@ -1,132 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MathRush</title>
-  <link rel="icon" type="image/x-icon" href="Icons/math-48.png">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="utf-8" />
+    <title>MathRush</title>
+    <link rel="icon" type="image/x-icon" href="Icons/math-48.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    />
 
+    <!-- Load JS after HTML is parsed -->
+    <script defer src="index.js"></script>
 
-  <!-- Load JS after HTML is parsed -->
-  <script defer src="index.js"></script>
-
-  <script defer src="GameFunc.js"></script>
-</head>
-<body>
-
+    <script defer src="GameFunc.js"></script>
+  </head>
+  <body>
     <!-- Left Menu -->
-  <nav class="menu">
-    <a href="#high_scores" onclick="showPage('high_scores')" class="fa-solid fa-web-awesome"><span>High Scores</span></a>
-    <a href="#settings" onclick="showPage('settings')" class="fa-solid fa-gear"><span>Settings</span></a>
-  </nav>
-
-  <!-- Right Content -->
-  <main class="content">
-    
-    <div id="Main_Menu" class="page active2">
-      <button type="button" class="fa-solid fa-play" onclick="startGame()">&nbsp;&nbsp;Play</button>
-    <!--<h1>Main Menu</h1>
-    <p>Start the game, pick a mode, etc.</p>  -->  
-  </div>
-    
-    <div id="instructions" class="page">
-    <h1>Instructions</h1>
-    <p>Welcome to MathRush!
-       <br>
-       <br>
-       Solve as many math problems as you can before time runs out.<br>
-       Each correct answer gets you closer to the finish line and win!
-       <br>
-       <br>
-       If you dont answer all the questions right, you Loose :<br>  
-       Choose your difficulty level and start racing against the clock!</p>  
-      </div>
-    
-       <div id="high_scores" class="page">
-    <h1>High Scores</h1>
-    <table id="scores-list">
-      <thead>
-      <tr>
-        <th>Player</th>
-        <th>Mode - Time(sec) - Status</th>
-      </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>    
-    </div>
-    
-    <div id="settings" class="page">
-    <h1>Settings</h1>
-    <div class="checkbox-container">
-      <label for="fullscreen-toggle">
-          Fullscreen&nbsp;&nbsp;
-        <input type="checkbox" id="fullscreen-toggle" onchange="toggleFullscreen()">
-      </label>  
-    </div> 
-</div>
-
-    <div id="Game_Main" class="page">
-    <h1>ENTER THE ARENA</h1>
-<label for="Username-input">
-  <input placeholder="Enter your name..." id="Username-input" type="text" class="game-input" autocomplete="off">
-</label> 
-<!-- Difficulty choices -->
-  <div class="difficulty-options">
-    <label class="game-checkbox">
-      <input type="checkbox" id="easy-mode">
-      <span class="checkmark"></span> Easy Mode
-    </label>
-
-    <label class="game-checkbox">
-      <input type="checkbox" id="hard-mode">
-      <span class="checkmark"></span> Hard Mode
-    </label>
-  </div>
-    <!-- Start button -->
-  <button id="start-btn" type="button" onclick="actuallyStartGame()" class="game-button">Start Game</button>
-
-
-    <!-- Feedback messages -->
-  <div id="feedbkIfEmpty"></div>
- </div>
-
-
-<div id="actualGamePage" class="page">
-  <h1>Game</h1>
-
-  <p id="timer-display">Time Left: 60s</p>
-  <p id="correctAnswersCount">Question: 0/10</p>
-
-  <div id="game-container">
-    <div id="question-area">
-      <p id="question-text"></p>
-      <input 
-        type="text" 
-        id="answer-input" 
-        class="game-input" 
-        placeholder="Type your answer..." 
-        autocomplete="off"
+    <nav class="menu">
+      <a
+        href="#high_scores"
+        onclick="showPage('high_scores')"
+        class="fa-solid fa-web-awesome"
+        ><span>High Scores</span></a
       >
-      <button type="button" id="submitButton" onclick="checkAnswer()">Submit</button>
-    </div>
-  </div>
+      <a
+        href="#settings"
+        onclick="showPage('settings')"
+        class="fa-solid fa-gear"
+        ><span>Settings</span></a
+      >
+    </nav>
 
-  <!-- Feedback messages -->
-  <div id="rightAnswer"></div>
-  <div id="wrongAnswer"></div>
-</div>
+    <!-- Right Content -->
+    <main class="content">
+      <div id="Main_Menu" class="page active2">
+        <button type="button" class="fa-solid fa-play" onclick="startGame()">
+          &nbsp;&nbsp;Play
+        </button>
+        <!--<h1>Main Menu</h1>
+    <p>Start the game, pick a mode, etc.</p>  -->
+      </div>
 
-  </main>
+      <div id="instructions" class="page">
+        <h1>Instructions</h1>
+        <p>
+          Welcome to MathRush!
+          <br />
+          <br />
+          Solve as many math problems as you can before time runs out.<br />
+          Each correct answer gets you closer to the finish line and win!
+          <br />
+          <br />
+          If you dont answer all the questions right, you Loose :<br />
+          Choose your difficulty level and start racing against the clock!
+        </p>
+      </div>
 
-  <footer>
-    <div class="footer-tabs">
-    <a href="#instructions" onclick="showPage('instructions')" class="fa-solid fa-lightbulb"><span>Instructions</span></a>
-    <a href="#Main_Menu" onclick="showPage('Main_Menu')" class="fa-solid fa-house"><span>Home</span></a>
-  </div>
-  </footer>
-</body>
+      <div id="high_scores" class="page">
+        <h1>High Scores</h1>
+        <table id="scores-list">
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Mode - Time(sec) - Status</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+
+      <div id="settings" class="page">
+        <h1>Settings</h1>
+        <div class="checkbox-container">
+          <label for="fullscreen-toggle">
+            Fullscreen&nbsp;&nbsp;
+            <input
+              type="checkbox"
+              id="fullscreen-toggle"
+              onchange="toggleFullscreen()"
+            />
+          </label>
+        </div>
+      </div>
+
+      <div id="Game_Main" class="page">
+        <h1>ENTER THE ARENA</h1>
+        <label for="Username-input">
+          <input
+            placeholder="Enter your name..."
+            id="Username-input"
+            type="text"
+            class="game-input"
+            autocomplete="off"
+          />
+        </label>
+        <!-- Difficulty choices -->
+        <form class="difficulty-options">
+          <label class="game-checkbox">
+            <input type="checkbox" id="easy-mode" />
+            <span class="checkmark"></span> Easy Mode
+          </label>
+
+          <label class="game-checkbox">
+            <input type="checkbox" id="hard-mode" />
+            <span class="checkmark"></span> Hard Mode
+          </label>
+        </form>
+        <!-- Start button -->
+        <button
+          id="start-btn"
+          type="button"
+          onclick="actuallyStartGame()"
+          class="game-button"
+        >
+          Start Game
+        </button>
+
+        <!-- Feedback messages -->
+        <div id="feedbkIfEmpty"></div>
+      </div>
+
+      <div id="actualGamePage" class="page">
+        <h1>Game</h1>
+
+        <p id="timer-display">Time Left: 60s</p>
+        <p id="correctAnswersCount">Question: 0/10</p>
+
+        <div id="game-container">
+          <div id="question-area">
+            <p id="question-text"></p>
+            <input
+              type="text"
+              id="answer-input"
+              class="game-input"
+              placeholder="Type your answer..."
+              autocomplete="off"
+            />
+            <button type="button" id="submitButton" onclick="checkAnswer()">
+              Submit
+            </button>
+          </div>
+        </div>
+
+        <!-- Feedback messages -->
+        <div id="rightAnswer"></div>
+        <div id="wrongAnswer"></div>
+      </div>
+
+      <div id="wonPage" class="page">
+        <h1>You Won!</h1>
+        <button
+          type="button"
+          id="spelaIgenButton"
+          onclick="actuallyStartGame()"
+        >
+          Spela Igen
+        </button>
+        <!-- visa highscore -->
+      </div>
+
+      <div id="lostPage" class="page">
+        <h1>You Lost!</h1>
+        <button
+          type="button"
+          id="spelaIgenButton"
+          onclick="actuallyStartGame()"
+        >
+          Spela Igen
+        </button>
+        <!-- visa highscore -->
+      </div>
+    </main>
+
+    <footer>
+      <div class="footer-tabs">
+        <a
+          href="#instructions"
+          onclick="showPage('instructions')"
+          class="fa-solid fa-lightbulb"
+          ><span>Instructions</span></a
+        >
+        <a
+          href="#Main_Menu"
+          onclick="showPage('Main_Menu')"
+          class="fa-solid fa-house"
+          ><span>Home</span></a
+        >
+      </div>
+    </footer>
+  </body>
 </html>

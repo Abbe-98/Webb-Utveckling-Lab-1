@@ -1,27 +1,29 @@
+//GameFunc.js
 let currentPlayer = "";
 let currentMode = "";
 let startTime = 0;
-
 
 const easyMode = document.getElementById("easy-mode");
 const hardMode = document.getElementById("hard-mode");
 // When easy-mode is checked → hard-mode is forced to uncheck.
 easyMode.addEventListener("change", () => {
-    if (easyMode.checked) {
-        hardMode.checked = false; // uncheck hard if easy is checked
-    }
+  if (easyMode.checked) {
+    hardMode.checked = false; // uncheck hard if easy is checked
+  }
 });
 // When hard-mode is checked → easy-mode is forced to uncheck.
 hardMode.addEventListener("change", () => {
-if (hardMode.checked) {
-  easyMode.checked = false; // uncheck easy if hard is checked
-}
+  if (hardMode.checked) {
+    easyMode.checked = false; // uncheck easy if hard is checked
+  }
 });
-
 
 function actuallyStartGame() {
   const username = document.getElementById("Username-input").value.trim();
 
+  //nollställ poäng
+  correctAnswersCount = 0;
+  questionCounter.innerText = `Question: ${correctAnswersCount}/10`;
 
   // Check username not empty
   if (!username) {
@@ -35,48 +37,46 @@ function actuallyStartGame() {
     return;
   }
 
-    // Save game info
+  // Save game info
   currentPlayer = username;
   currentMode = easyMode.checked ? "Easy" : "Hard";
   startTime = Date.now(); // mark start in ms
 
-
   // Välj sidan du vill visa
-  showPage('actualGamePage');
+  showPage("actualGamePage");
 
-    let gameMain = document.getElementById("actualGamePage");
+  let gameMain = document.getElementById("actualGamePage");
   if (gameMain.classList.contains("active")) {
-    gameMain.style.height = "90%"
+    gameMain.style.height = "90%";
     gameMain.style.width = "90%";
   }
 
   startTimer(); // startar nerräkningen automatiskt
   generateQuestions();
-
-  }  
+}
 
 const questions = [];
 
 function generateQuestions() {
-  
   const num1 = Math.floor(Math.random() * 10);
   const num2 = Math.floor(Math.random() * 10);
-  const correctAnswer = num1 + num2; 
-  document.getElementById('question-text').innerText = `${num1} + ${num2} = ?`;
+  const correctAnswer = num1 + num2;
+  document.getElementById("question-text").innerText = `${num1} + ${num2} = ?`;
 
   // Lägg till svarshandling
-  document.getElementById('answer-input').value = ''; // nollställ
-  document.getElementById('answer-input').dataset.correctAnswer = correctAnswer; // spara rätt svar
+  document.getElementById("answer-input").value = ""; // nollställ
+  document.getElementById("answer-input").dataset.correctAnswer = correctAnswer; // spara rätt svar
   //checkAnswer(); // kallas i html
   console.clear();
 
+  //om tiden går ut
 }
 
 let correctAnswersCount = 0;
 let questionCounter = document.getElementById("correctAnswersCount");
 
 function checkAnswer() {
-  const answerInput = document.getElementById('answer-input');
+  const answerInput = document.getElementById("answer-input");
   const userAnswer = answerInput.value.trim(); // raw value
   const correctAnswer = parseInt(answerInput.dataset.correctAnswer);
 
@@ -87,7 +87,7 @@ function checkAnswer() {
   }
 
   const parsedAnswer = parseInt(userAnswer);
-    // Case 2: Not a valid number
+  // Case 2: Not a valid number
   if (isNaN(parsedAnswer)) {
     showWrongAnswer("Please enter a valid number!");
     return;
@@ -100,7 +100,6 @@ function checkAnswer() {
 
     let totalQuestions = 10;
     questionCounter.innerText = `Question: ${correctAnswersCount}/${totalQuestions}`;
-
 
     // Win case
     if (correctAnswersCount === totalQuestions) {
@@ -116,43 +115,44 @@ function checkAnswer() {
     showWrongAnswer("The answer is wrong!");
   }
 
-  // Case 4: Time runs out → Lose
-  if (timeLeft === 0) {
-    lostGame();
-  }
-
   answerInput.value = "";
 }
 
 function showFeedbkIfEmpty(message) {
-  const showFeedbkIfEmp = document.getElementById('feedbkIfEmpty');
+  const showFeedbkIfEmp = document.getElementById("feedbkIfEmpty");
   showFeedbkIfEmp.innerText = message;
-  showFeedbkIfEmp.className = 'show';
-  setTimeout(() => { showFeedbkIfEmp.className = showFeedbkIfEmp.className.replace('show', ''); }, 2000);
+  showFeedbkIfEmp.className = "show";
+  setTimeout(() => {
+    showFeedbkIfEmp.className = showFeedbkIfEmp.className.replace("show", "");
+  }, 2000);
 }
 
 function showRightAnswer(message) {
-  const showRightAnswer = document.getElementById('rightAnswer');
+  const showRightAnswer = document.getElementById("rightAnswer");
   showRightAnswer.innerText = message;
-  showRightAnswer.className = 'show';
-  setTimeout(() => { showRightAnswer.className = showRightAnswer.className.replace('show', ''); }, 2000);
+  showRightAnswer.className = "show";
+  setTimeout(() => {
+    showRightAnswer.className = showRightAnswer.className.replace("show", "");
+  }, 2000);
 }
 
 function showWrongAnswer(message) {
-  const showWrongAnswer = document.getElementById('wrongAnswer');
+  const showWrongAnswer = document.getElementById("wrongAnswer");
   showWrongAnswer.innerText = message;
-  showWrongAnswer.className = 'show';
-  setTimeout(() => { showWrongAnswer.className = showWrongAnswer.className.replace('show', ''); }, 2000);
+  showWrongAnswer.className = "show";
+  setTimeout(() => {
+    showWrongAnswer.className = showWrongAnswer.className.replace("show", "");
+  }, 2000);
 }
 
 let timerID; // global so both start/stop can use it
 let startSec; // when the timer starts
-let stopSec;  // when the timer stops
+let stopSec; // when the timer stops
 let timeLeft;
 
 function startTimer() {
-   timeLeft = 5;
-  const timerDisplay = document.getElementById('timer-display');
+  timeLeft = currentMode === "Easy" ? 60 : 30; // if easy easy 60 sek, else hard 30 sek
+  const timerDisplay = document.getElementById("timer-display");
 
   timerDisplay.innerText = `Time Left: ${timeLeft}s`;
   clearInterval(timerID);
@@ -166,6 +166,8 @@ function startTimer() {
       clearInterval(timerID);
       timerDisplay.innerText = "Tiden är slut!";
 
+      lostGame();
+
       // Only save Loser if the game hasn’t already ended
       if (correctAnswersCount < 10) {
         const stopSec = Date.now();
@@ -176,22 +178,33 @@ function startTimer() {
   }, 1000);
 }
 
-
 // ------------------------------------------------ //
-function stopTimer(){
+function stopTimer() {
   clearInterval(timerID);
 }
 
-function wonGame(){
+function wonGame() {
   stopTimer();
-  showRightAnswer('You Won');
+  showPage("wonPage");
+
+  let wonpageSize = document.getElementById("wonPage");
+  if (wonpageSize.classList.contains("active")) {
+    wonpageSize.style.height = "90%";
+    wonpageSize.style.width = "90%";
+  }
+  // Eventuellt nullställ poäng här också, om det behövs
 }
 
-function lostGame(){
-    stopTimer();
-    showWrongAnswer('you lost');
-}
+function lostGame() {
+  stopTimer();
+  showPage("lostPage");
 
+  let lostpageSize = document.getElementById("lostPage");
+  if (lostpageSize.classList.contains("active")) {
+    lostpageSize.style.height = "90%";
+    lostpageSize.style.width = "90%";
+  }
+}
 
 function saveHighScore(player, mode, time, result) {
   let scores = JSON.parse(localStorage.getItem("highScores")) || [];
@@ -209,17 +222,17 @@ function renderHighScores() {
 
   let scores = JSON.parse(localStorage.getItem("highScores")) || [];
 
-scores.sort((a, b) => {
-  // Sort by time first (lower is better)
-  if (a.time !== b.time) {
-    return a.time - b.time;
-  }
-  // If times are equal → Hard beats Easy
-  if (a.mode === b.mode) return 0;
-  return a.mode === "Hard" ? -1 : 1;
-});
+  scores.sort((a, b) => {
+    // Sort by time first (lower is better)
+    if (a.time !== b.time) {
+      return a.time - b.time;
+    }
+    // If times are equal → Hard beats Easy
+    if (a.mode === b.mode) return 0;
+    return a.mode === "Hard" ? -1 : 1;
+  });
 
-  scores.forEach(entry => {
+  scores.forEach((entry) => {
     const row = document.createElement("tr");
     row.innerHTML = `
       <td>${entry.player}</td>
